@@ -3,7 +3,7 @@ import { DatePicker, Button, Alert } from 'antd';
 import {merge} from 'lodash';
 
 import { getDoctorHomePageService } from '../services/studioService.js';
-import Summary from '../common/Summary.js';
+import Summary from '../common/Summary';
 import style from './single.css';
 let icon = require('../img/icon.png');
 
@@ -19,6 +19,7 @@ class Single extends React.Component{
     componentDidMount(){
         let self = this;
         getDoctorHomePageService(location.hash.split("?")[1].split("&")[0].split("=")[1],function(result){
+            //更新页面的state--页面的状态机，重新渲染页面
             self.setState({ 
                 person : result,
                 goodAt : result.expertiseTag

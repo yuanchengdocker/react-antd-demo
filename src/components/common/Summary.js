@@ -14,7 +14,7 @@ class Summary extends React.Component{
             tagIntroduce : !this.state.tagIntroduce
         });
     }
-
+    //组件中的props是一种父级向子级传递数据的方式
 	render() {
 		return <section className="box introduction" id="introduction">
             <h3>简介</h3>

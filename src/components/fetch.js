@@ -1,8 +1,7 @@
 import React from 'react'
-import { Card } from 'antd';
+import { Layout, Menu, Breadcrumb } from 'antd';
+const { Header, Footer, Sider, Content } = Layout;
 
-// 引入标准Fetch及IE兼容依赖
-import 'whatwg-fetch'
 
 export default class myCard extends React.Component {
     constructor(props) {
@@ -11,30 +10,38 @@ export default class myCard extends React.Component {
             lists: []
         }
     }
-
-    // 获取数据
-    fetchFn = () => {
-        fetch('../../data.json')
-            .then((res) => { console.log(res.status);return res.json() })
-            .then((data) => { this.setState({lists:data.listData}) })
-            .catch((e) => { console.log(e.message) })
-    }
-
     componentDidMount() {
-        this.fetchFn()
     }
-
     render() {
         return (
-            <Card title="资源导航" style={{ width: "800px", margin: "0 auto" }} className="animated zoomIn">
-                {
-                    this.state.lists.map((e) => {
-                        return (
-                            <p className="doclist"><a href={ e.url } target="_blank">{ e.title }</a></p>
-                        )
-                    })
-                }
-            </Card>
+            <div>
+                 <Layout className="layout">
+                    <Header>
+                      <div className="logo" />
+                      <Menu
+                        theme="dark"
+                        mode="horizontal"
+                        defaultSelectedKeys={['2']}
+                        style={{ lineHeight: '64px' }}
+                      >
+                        <Menu.Item key="1">nav 1</Menu.Item>
+                        <Menu.Item key="2">nav 2</Menu.Item>
+                        <Menu.Item key="3">nav 3</Menu.Item>
+                      </Menu>
+                    </Header>
+                    <Content style={{ padding: '0 50px' }}>
+                      <Breadcrumb style={{ margin: '12px 0' }}>
+                        <Breadcrumb.Item>Home</Breadcrumb.Item>
+                        <Breadcrumb.Item>List</Breadcrumb.Item>
+                        <Breadcrumb.Item>App</Breadcrumb.Item>
+                      </Breadcrumb>
+                      <div style={{ background: '#fff', padding: 24, minHeight: 280 }}>Content</div>
+                    </Content>
+                    <Footer style={{ textAlign: 'center' }}>
+                      Ant Design ©2016 Created by Ant UED
+                    </Footer>
+                  </Layout>
+            </div>
         )
     }
 }

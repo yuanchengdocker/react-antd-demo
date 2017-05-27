@@ -16,9 +16,12 @@ import { Menu, Icon, Switch } from 'antd'
 const SubMenu = Menu.SubMenu
 
 import './main.css';
+//会编译为css文件到style.css
 import styles from './css/main.styl';
+//let logo = require('./images/logo.png');
+import logo from './images/logo.png'
 
-// 引入单个页面（包括嵌套的子页面）
+// 引入单个页面（组件导入）
 import myTable from './components/table.js'
 import myForm from './components/form.js'
 import myChart from './components/chart.js'
@@ -28,10 +31,8 @@ import myCard from './components/fetch.js'
 import myAntdTest from './components/myStudio/studio.js'
 import person from './components/personer/single.js'
 
-
 const ACTIVE = { color: 'red' }
 
-// 配置导航
 class Sider extends React.Component {
     constructor(props) {
         super(props)
@@ -40,16 +41,18 @@ class Sider extends React.Component {
             username: ''
         }
     }
-    // handleClick = (e) => {
-    //     this.setState({
-    //         current: e.key
-    //     })
-    // }
-    handleClick(e){
+    handleClick = (e) => {
         this.setState({
             current: e.key
         })
     }
+    componentDidUpdate(){}
+    componentWillUpdate(){}
+    //组件接收到新的props时调用
+    componentWillReceiveProps(nextProps){}
+    //首次渲染之前调用完成后执行
+    componentWillMount(){}
+    //首次渲染之后调用完成后执行
     componentDidMount() {
         this.getUser()
     }
@@ -62,7 +65,7 @@ class Sider extends React.Component {
         return (
             <div>
                 <div id="leftMenu"> 
-                    <img src='./images/logo.png' width="50" id="logo"/>
+                    <img src={logo} width="50" id="logo"/>
                     <Menu theme="dark"
                         onClick={this.handleClick.bind(this)}
                         style={{ width: 185 }}
@@ -75,6 +78,7 @@ class Sider extends React.Component {
                             <Menu.Item key="2"><Link to="/myForm">表单</Link></Menu.Item>
                             <Menu.Item key="3"><Link to="/myChart">图表</Link></Menu.Item>
                             <Menu.Item key="4"><Link to="/myCalendar">日历</Link></Menu.Item>
+                            <Menu.Item key="6"><Link to="/myCard">布局</Link></Menu.Item>
                             <Menu.Item key="7"><Link to="/myAntdTest">我的测试</Link></Menu.Item>
                         </SubMenu>
                     </Menu>

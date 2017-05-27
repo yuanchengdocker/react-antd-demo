@@ -4,6 +4,7 @@ import {post} from '../utils/postUrl.js'
 
 export function getStudioDetail(doctorStudioId,callback){
 	let promises = [];
+	//Promise异步操作，相当于一任务容器，Resolved(已完成)和Rejected(已失败)
 	promises.push(new Promise(function(resolve, reject) {
 		post(
 			address.studioDetailService,
@@ -31,6 +32,7 @@ export function getStudioDetail(doctorStudioId,callback){
 		);
 	}));
 
+	//等待所有任务resolve已完成后
 	Promise.all(promises).then(function (result) {
 	    callback && callback(result); 
 	});
